@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const app = express();
 const session = require('express-session');
 const passport = require('passport');
+const path = require('path');
 const {check,validationResult} = require('express-validator/check');
 
 
@@ -43,7 +44,7 @@ var jsonParser = BodyParser.json();
 
 
 //Connection with monodb
-mongoose.connect('mongodb://localhost:27017/comment',{useNewUrlParser:true});
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/comment',{useNewUrlParser:true});
 const connection = mongoose.connection;
 
 connection.once('open',function(){
@@ -175,22 +176,18 @@ function authValidationResult(req,res,next){
 
 
 
-// app.get('/',(req,res) => {
-//     res.render('index');
-// });
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('../Frontend/build'));
+
+    app.get('*',(req,res)=>{
+        res.sendFile(path.join(__dirname + 'Frontend' + 'build' + 'index.html'));
+    });
+}
 
 
 
-
-
-
-//Routes Setup
-// app.use('/',require('./routes/index'));
-// app.use('/users',require('./routes/users'));
-
-
-
+const PORT = 4000 || process.env.PORT;
 //Listening to port 4000
-app.listen(4000,function(){
+app.listen(PORT,function(){
     console.log('Listening on port 4000');
 });
