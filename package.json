@@ -3,25 +3,26 @@
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
-  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    
-    "heroku-postbuild":"cd Frontend && npm install && npm run build",
-    "start":"node main.js"
+    "heroku-postbuild": "cd Frontend && npm install && npm run build",
+    "start": "node main.js",
+    "proxy": "http://localhost:4000"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
-    "mongoose": "^5.4.19",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
-    "bcryptjs": "^2.4.3",
     "express-session": "^1.15.6",
-    "express-validator": "^5.3.1"
+    "express-validator": "^5.3.1",
+    "http-proxy-middleware": "^0.20.0",
+    "mongoose": "^5.4.19",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
   }
 }

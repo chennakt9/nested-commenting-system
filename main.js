@@ -7,6 +7,18 @@ const session = require('express-session');
 const passport = require('passport');
 const path = require('path');
 const {check,validationResult} = require('express-validator/check');
+// const proxy = require('http-proxy-middleware');
+const morgan = require('morgan')
+
+const PORT = process.env.PORT || 4000;
+
+// app.use(
+//     "/api",
+//     proxy({
+//       target: "http://localhost:4000",
+//       changeOrigin: true
+//     })
+//   );
 
 
 //Requiring passport file
@@ -18,7 +30,7 @@ const Comment = require('./models/comments');
 // const User = require('./models/User');
 
 //MiddleWares
-
+app.use(morgan('short'));
 app.use(cors({origin: true, credentials: true}));
 
 
@@ -60,12 +72,12 @@ function ensureAuthenticated(req,res,next){
 
    
     // console.log("Error");
-    res.redirect('/users/login');
+    res.redirect('/api/users/login');
 
 }
 
 //Routes Implementing
-app.get('/commentsapi',ensureAuthenticated,function(req,res){
+app.get('/api/commentsapi',ensureAuthenticated,function(req,res){
     Comment.find(function(err,comments){
         if(err){
             console.log(err);
@@ -81,7 +93,7 @@ app.get('/commentsapi',ensureAuthenticated,function(req,res){
 
 
 
-app.get('/commentsapi/:id',ensureAuthenticated,function(req,res){
+app.get('/api/commentsapi/:id',ensureAuthenticated,function(req,res){
     let id = req.params.id;
     Comment.find({"parent_comment_id":id},function(err,comment){
         if(err){
@@ -92,7 +104,7 @@ app.get('/commentsapi/:id',ensureAuthenticated,function(req,res){
     });
 });
 
-app.post('/commentsapi/add',jsonParser,function(req,res){
+app.post('/api/commentsapi/add',jsonParser,function(req,res){
     console.log(req.body);
     let comment = new Comment(req.body);
     comment.save().then(comment => {
@@ -107,14 +119,14 @@ app.post('/commentsapi/add',jsonParser,function(req,res){
 
 // ####################################### USER ROUTES ##########################
 //Register Get Route
-app.get('/users/register',(req,res) => {
+app.get('/api/users/register',(req,res) => {
     res.json({ error : "Error registering" })
     // res.render('register',{ messages : req.flash('error') });
 });
 
 
 //Register Post route with validation
-app.post('/users/register',[
+app.post('/api/users/register',[
         check('name').not().isEmpty().withMessage('Name cannot be empty'),
         check('email').not().isEmpty().withMessage('Email Field cannot be empty'),
         check('email').isEmail().withMessage('Email is Invalid'),
@@ -126,26 +138,26 @@ app.post('/users/register',[
 })
 
 //Login get route
-app.get('/users/login',(req,res) => {
+app.get('/api/users/login',(req,res) => {
     res.json({ error : "Error logging in",message:"Registered Succesfully" })
     // success_message = req.flash('success');
     // res.render('login',{ success_messages : success_message, messages : req.flash('error')});
 });
 
 //Login post route
-app.post('/users/login',(req,res,next) => {
+app.post('/api/users/login',(req,res,next) => {
     
     passport.authenticate('local.login',{
-        successRedirect:'/commentsapi',
-        failureRedirect:'/users/login',
+        successRedirect:'/api/commentsapi',
+        failureRedirect:'/api/users/login',
     })(req,res,next);
 });
 
 //Logout Route
-app.get('/logout',(req,res)=>{
+app.get('/api/logout',(req,res)=>{
     req.logout();
     // req.flash('success','You are Logged out');
-    res.redirect('/users/login');
+    res.redirect('/api/users/login');
 })
 
 
@@ -161,11 +173,11 @@ function authValidationResult(req,res,next){
         });
         console.log(messages);
         // req.flash('error',messages);
-        res.redirect('/users/register');
+        res.redirect('/api/users/register');
     }else{
         passport.authenticate('local.signup',{
-            successRedirect:'/users/login',
-            failureRedirect:'/users/register',
+            successRedirect:'/api/users/login',
+            failureRedirect:'/api/users/register',
             failureFlash:true
         })(req,res,next);
 
@@ -187,8 +199,8 @@ if(process.env.NODE_ENV === 'production'){
 
 
 
-const PORT = process.env.PORT || 4000;
-//Listening to port 4000
-app.listen(process.env.PORT || 4000,function(){
+
+//Listening to port 
+app.listen(PORT,function(){
     console.log(`Listening on port ${PORT}`);
 });

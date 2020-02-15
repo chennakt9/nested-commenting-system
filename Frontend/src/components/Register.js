@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 
 import axios from 'axios';
 
+const axiosInstance = axios.create({
+  baseURL: "http://localhost:4000"
+  });
+
 export default class Register extends Component {
 
     constructor(props){
@@ -67,7 +71,7 @@ export default class Register extends Component {
                 
                
     
-                axios.post('http://localhost:4000/users/register', registerData)
+                axiosInstance.post('/api/users/register', registerData)
                 .then(res => {
                     console.log(res);
                     if(res.data["message"]){

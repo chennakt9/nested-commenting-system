@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 
 import axios from 'axios';
+import '../index.css';
+const axiosInstance = axios.create({
+    baseURL: "http://localhost:4000"
+    });
 
 // import {Link} from 'react-router-dom';
-import '../index.css';
+
 
 
 export default class Login extends Component {
@@ -51,8 +55,9 @@ export default class Login extends Component {
         if(this.state.email!=="" && this.state.password!==""){
             
            
-
-            axios.post('http://localhost:4000/users/login', loginData)
+            console.log(document.location.hostname);
+            console.log(process.env);
+            axiosInstance.post('/api/users/login', loginData)
             .then(res => {
                 console.log(res);
                 if(res.data["error"]){

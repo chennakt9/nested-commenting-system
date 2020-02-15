@@ -3,6 +3,9 @@ import axios from 'axios';
 // import {Link} from 'react-router-dom';
 import '../index.css';
 
+const axiosInstance = axios.create({
+  baseURL: "http://localhost:4000"
+  });
 
 
 class CommentsList extends Component {
@@ -73,7 +76,7 @@ class CommentsList extends Component {
 
   componentWillMount(){
 
-    axios.get('http://localhost:4000/commentsapi').then(res => {
+      axiosInstance.get('/api/commentsapi').then(res => {
 
       this.setState({
         data:res.data
@@ -82,7 +85,7 @@ class CommentsList extends Component {
 
     }).then(()=>{
 
-      axios.get('http://localhost:4000/commentsapi/0').then(res => {
+      axiosInstance.get('/api/commentsapi/0').then(res => {
       // console.log(res.parents)
 
     this.setState({
@@ -178,7 +181,7 @@ class CommentsList extends Component {
 
     if(this.state.curr_name!=="" && this.state.curr_comment!==""){
 
-      axios.post('http://localhost:4000/commentsapi/add/', newComment)
+      axiosInstance.post('/api/commentsapi/add/', newComment)
       .then(res => console.log(res.data));
 
       this.componentWillMount();
