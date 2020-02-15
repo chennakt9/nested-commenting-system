@@ -167,7 +167,7 @@ export default class Register extends Component {
             Register
           </button>
         </form>
-        <p className="lead mt-4">Have An Account? <a href="/users/login">Login</a></p>
+        <p className="lead mt-4">Have An Account? <a href="/">Login</a></p>
       </div>
     </div>
   </div>

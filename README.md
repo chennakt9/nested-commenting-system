@@ -8,7 +8,7 @@ I assume node,mongodb and git is already installed in your system.If not they ca
 Then clone this repo using 
 
 ```
-$ git clone https://github.com/chennakt9/nested-commenting-system
+$ git clone https://github.com/chennakt9/nested-commenting-system.git
 ```
 
 ### Installing
@@ -22,7 +22,6 @@ $ npm install
 ```
 then 
 ```
-$ cd Backend/
 $ nodemon main.js
 
 ```
@@ -36,7 +35,6 @@ $ npm install
 ```
 then 
 ```
-$ cd Frontend/
 $ npm start
 
 ```

@@ -19,7 +19,7 @@ class App extends Component {
             
             <ul className="navbar-nav">
             <li className="nav-item">
-            <a className="nav-link" href="/">Home</a>
+            <a className="nav-link" href="/comments">Home</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/about">About</a>

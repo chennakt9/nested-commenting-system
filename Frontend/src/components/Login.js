@@ -121,7 +121,7 @@ export default class Login extends Component {
                 <button type="submit" className="btn btn-info btn-block">Login</button>
             </form>
             <p className="lead mt-4">
-                No Account? <a href="/users/register">Register</a>
+                No Account? <a href="/register">Register</a>
             </p>
             </div>
         </div>
