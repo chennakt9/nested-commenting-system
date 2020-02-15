@@ -13,11 +13,12 @@ class CommentsList extends Component {
       comments:{},
       curr_name:"",
       curr_comment:"",
-      curr_parent:"0"
+      curr_parent:"0",
+      error:""
     };
 
     axios.defaults.withCredentials = true;
-    axios.defaults.baseURL = "https://nestedcommenting.herokuapp.com/";
+    axios.defaults.baseURL = `https://${document.location.hostname}/`; //https://nestedcommenting.herokuapp.com/
 
     if(process.env.NODE_ENV==="development"){
       axios.defaults.baseURL = "http://localhost:4000"
@@ -78,10 +79,18 @@ class CommentsList extends Component {
   componentWillMount(){
 
       axios.get('/api/commentsapi').then(res => {
-
-      this.setState({
-        data:res.data
+      
+      if(res.data["error"]){
+        this.setState({
+          error:"Error Displaying Data.You might have been logged out."
       });
+      }else{
+        this.setState({
+          data:res.data
+        });
+      }
+
+      
     
 
     }).then(()=>{
@@ -183,9 +192,12 @@ class CommentsList extends Component {
     if(this.state.curr_name!=="" && this.state.curr_comment!==""){
 
       axios.post('/api/commentsapi/add/', newComment)
-      .then(res => console.log(res.data));
+      .then(res => {
+        console.log(res.data);
+        this.componentWillMount();
+      });
 
-      this.componentWillMount();
+      
 
       //After Adding into the database
       this.setState({
@@ -202,6 +214,11 @@ class CommentsList extends Component {
     
     return (
       <div className="p-4 m-4 border border-light">
+        <br></br>
+        <div className="alert alert-danger" style={{display:this.state.error?"block":'none'}}>
+              
+              {this.state.error}
+          </div>
         <br></br>
        
         <div className="shadow p-3 mb-5 bg-white rounded">

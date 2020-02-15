@@ -7,18 +7,9 @@ const session = require('express-session');
 const passport = require('passport');
 const path = require('path');
 const {check,validationResult} = require('express-validator/check');
-// const proxy = require('http-proxy-middleware');
 const morgan = require('morgan')
 
 const PORT = process.env.PORT || 4000;
-
-// app.use(
-//     "/api",
-//     proxy({
-//       target: "http://localhost:4000",
-//       changeOrigin: true
-//     })
-//   );
 
 
 //Requiring passport file

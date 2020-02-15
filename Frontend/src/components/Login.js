@@ -15,7 +15,7 @@ export default class Login extends Component {
         };
 
         axios.defaults.withCredentials = true;
-        axios.defaults.baseURL = "https://nestedcommenting.herokuapp.com/";
+        axios.defaults.baseURL = `https://${document.location.hostname}/`; //https://nestedcommenting.herokuapp.com/
 
         if(process.env.NODE_ENV==="development"){
             axios.defaults.baseURL = "http://localhost:4000"
@@ -73,11 +73,6 @@ export default class Login extends Component {
             );
     
     
-            //After Adding into the database
-            // this.setState({
-            // name:"",
-            // password:""
-            // });
     
         }else{
             this.setState({
