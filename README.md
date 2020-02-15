@@ -21,8 +21,9 @@ $ nodemon main.js
 ```
 
 
-Similarly, open another terminal window (without closing the previous one) and complete the follwoing.
-*Note: Make sure both (F/B) servers are running.*
+Similarly, open another terminal window (without closing the previous one) and complete the follwoing.<br/>
+
+**Note: Make sure both (F/B) servers are running.**
 ```
 $ cd Frontend/
 $ npm install
