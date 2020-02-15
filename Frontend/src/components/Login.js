@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import '../index.css';
 const axiosInstance = axios.create({
-    baseURL: document.location.hostname || "http://localhost:4000"
+    baseURL: "https://nestedcommenting.herokuapp.com/"
     });
 
 // import {Link} from 'react-router-dom';
