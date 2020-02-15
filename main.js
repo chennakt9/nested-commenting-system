@@ -147,7 +147,7 @@ app.post('/api/users/login',(req,res,next) => {
 //Logout Route
 app.get('/api/logout',(req,res)=>{
     req.logout();
-    // req.flash('success','You are Logged out');
+    console.log("I am called");
     res.redirect('/api/users/login');
 })
 
@@ -163,7 +163,7 @@ function authValidationResult(req,res,next){
 
         });
         console.log(messages);
-        // req.flash('error',messages);
+        
         res.redirect('/api/users/register');
     }else{
         passport.authenticate('local.signup',{
@@ -171,8 +171,6 @@ function authValidationResult(req,res,next){
             failureRedirect:'/api/users/register',
             failureFlash:true
         })(req,res,next);
-
-        // req.flash('success','signup successful you  may now login');
 
         
     }

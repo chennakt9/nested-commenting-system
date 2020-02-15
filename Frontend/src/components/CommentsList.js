@@ -84,6 +84,8 @@ class CommentsList extends Component {
         this.setState({
           error:"Error Displaying Data.You might have been logged out."
       });
+
+      this.props.history.push("/");
       }else{
         this.setState({
           data:res.data
@@ -210,10 +212,23 @@ class CommentsList extends Component {
     
   }
 
+  onClickLogoutHandler = (e) => {
+    e.preventDefault();
+
+    axios.get('/api/logout').then(() => {
+      this.props.history.push('/');
+      
+
+  })
+
+  }
+
+
   render() {
     
     return (
       <div className="p-4 m-4 border border-light">
+        <button className="btn btn-secondary" onClick={this.onClickLogoutHandler} style={{float:"right",display:this.state.error?"none":'block'}}>Logout</button>
         <br></br>
         <div className="alert alert-danger" style={{display:this.state.error?"block":'none'}}>
               
