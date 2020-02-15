@@ -73,7 +73,7 @@ class CommentsList extends Component {
 
   componentWillMount(){
 
-    axios.get('http://localhost:4000/comments').then(res => {
+    axios.get('http://localhost:4000/commentsapi').then(res => {
 
       this.setState({
         data:res.data
@@ -82,7 +82,7 @@ class CommentsList extends Component {
 
     }).then(()=>{
 
-      axios.get('http://localhost:4000/comments/0').then(res => {
+      axios.get('http://localhost:4000/commentsapi/0').then(res => {
       // console.log(res.parents)
 
     this.setState({
@@ -178,7 +178,7 @@ class CommentsList extends Component {
 
     if(this.state.curr_name!=="" && this.state.curr_comment!==""){
 
-      axios.post('http://localhost:4000/comments/add/', newComment)
+      axios.post('http://localhost:4000/commentsapi/add/', newComment)
       .then(res => console.log(res.data));
 
       this.componentWillMount();

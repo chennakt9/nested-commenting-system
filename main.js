@@ -65,7 +65,7 @@ function ensureAuthenticated(req,res,next){
 }
 
 //Routes Implementing
-app.get('/comments',ensureAuthenticated,function(req,res){
+app.get('/commentsapi',ensureAuthenticated,function(req,res){
     Comment.find(function(err,comments){
         if(err){
             console.log(err);
@@ -81,7 +81,7 @@ app.get('/comments',ensureAuthenticated,function(req,res){
 
 
 
-app.get('/comments/:id',ensureAuthenticated,function(req,res){
+app.get('/commentsapi/:id',ensureAuthenticated,function(req,res){
     let id = req.params.id;
     Comment.find({"parent_comment_id":id},function(err,comment){
         if(err){
@@ -92,7 +92,7 @@ app.get('/comments/:id',ensureAuthenticated,function(req,res){
     });
 });
 
-app.post('/comments/add',jsonParser,function(req,res){
+app.post('/commentsapi/add',jsonParser,function(req,res){
     console.log(req.body);
     let comment = new Comment(req.body);
     comment.save().then(comment => {
@@ -136,7 +136,7 @@ app.get('/users/login',(req,res) => {
 app.post('/users/login',(req,res,next) => {
     
     passport.authenticate('local.login',{
-        successRedirect:'/comments',
+        successRedirect:'/commentsapi',
         failureRedirect:'/users/login',
     })(req,res,next);
 });
