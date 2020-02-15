@@ -36,8 +36,8 @@ $ npm start
 ```
 It will be opened in a browser with http://localhost:3000/ <br />
 You can login with these dummy user details <br />
-email : chenna@example.com <br />
-password : 1234 <br />
+email : `chenna@example.com` <br />
+password : `1234` <br />
 
 or you can create your own dummy user using register...
 
