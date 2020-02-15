@@ -187,8 +187,8 @@ if(process.env.NODE_ENV === 'production'){
 
 
 
-const PORT = 4000 || process.env.PORT;
+const PORT = process.env.PORT || 4000;
 //Listening to port 4000
-app.listen(PORT,function(){
+app.listen(process.env.PORT || 4000,function(){
     console.log(`Listening on port ${PORT}`);
 });
