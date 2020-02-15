@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 
 import axios from 'axios';
 import '../index.css';
-const axiosInstance = axios.create({
-    baseURL: "https://nestedcommenting.herokuapp.com/"
-    });
+// const axiosInstance = axios.create({
+//     baseURL: "https://nestedcommenting.herokuapp.com/"
+//     });
 
 // import {Link} from 'react-router-dom';
 
@@ -21,6 +21,7 @@ export default class Login extends Component {
         };
 
         axios.defaults.withCredentials = true;
+        axios.defaults.baseURL = "https://nestedcommenting.herokuapp.com/";
     
       }
 
@@ -56,8 +57,12 @@ export default class Login extends Component {
             
            
             console.log(document.location.hostname);
+            console.log(process.env.baseURL);
             console.log(process.env);
-            axiosInstance.post('/api/users/login', loginData)
+            if(NODE_ENV==="development"){
+                axios.baseURL = "http://localhost:4000"
+            }
+            axios.post('/api/users/login', loginData)
             .then(res => {
                 console.log(res);
                 if(res.data["error"]){
