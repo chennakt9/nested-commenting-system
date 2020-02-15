@@ -14,7 +14,7 @@ class App extends Component {
       <Router>
 
         <div className="container">
-          <nav className="navbar navbar-expand-sm bg-light">
+          {/* <nav className="navbar navbar-expand-sm bg-light">
 
             
             <ul className="navbar-nav">
@@ -27,7 +27,7 @@ class App extends Component {
               
             </ul>
 
-          </nav>
+          </nav> */}
 
           <Route path="/" exact component={Login} ></Route>
           
