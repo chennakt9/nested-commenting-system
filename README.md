@@ -16,26 +16,22 @@ $ git clone https://github.com/chennakt9/nested-commenting-system.git
 After opening the cloned folder in your IDE of your choice,run the following to get start
 
 ```
-
 $ npm install
 $ nodemon main.js
 ```
 
 
-Similarly,
-
+Similarly, open another terminal window (without closing the previous one) and complete the follwoing.
+*Note: Make sure both (F/B) servers are running.*
 ```
 $ cd Frontend/
 $ npm install
-
-```
-then 
-```
 $ npm start
-
 ```
+
 It will be opened in a browser with http://localhost:3000/ <br />
 You can login with these dummy user details <br />
+
 email : `chenna@example.com` <br />
 password : `1234` <br />
 
