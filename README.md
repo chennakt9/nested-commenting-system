@@ -40,10 +40,10 @@ $ cd Frontend/
 $ npm start
 
 ```
-It will be opened in a browser with http://localhost:3000/ 
-You can login with these dummy user details
-email : chenna@example.com
-password : 1234
+It will be opened in a browser with http://localhost:3000/__
+You can login with these dummy user details__
+email : chenna@example.com__
+password : 1234__
 
 or you can create your own dummy user using register...
 
