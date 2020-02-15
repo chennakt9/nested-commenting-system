@@ -43,6 +43,9 @@ or you can create your own dummy user using register...
 
 After successful login, you will be redirected to http://localhost:3000/comments where we can see all the posts, replies and comments 
 
+### Demo
+For Demo you can go to https://nestedcommenting.herokuapp.com/
+
 ## Authors
 
 * **chennakt9** - *Initial work* - [chennakt9](https://github.com/chennakt9)
