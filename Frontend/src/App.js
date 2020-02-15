@@ -29,10 +29,10 @@ class App extends Component {
 
           </nav>
 
-          <Route path="/" exact component={CommentsList} ></Route>
+          <Route path="/" exact component={Login} ></Route>
           
           <Route path="/about" component={About} ></Route>
-          <Route path="/login" component={Login} ></Route>
+          <Route path="/comments" component={CommentsList} ></Route>
           <Route path="/register" component={Register} ></Route>
         </div >
 

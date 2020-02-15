@@ -60,7 +60,7 @@ export default class Login extends Component {
                         error:"Error logging in..."
                     });
                 }else{
-                    this.props.history.push('/');
+                    this.props.history.push('/comments');
                 }
                 
                 

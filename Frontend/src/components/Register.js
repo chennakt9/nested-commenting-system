@@ -71,7 +71,7 @@ export default class Register extends Component {
                 .then(res => {
                     console.log(res);
                     if(res.data["message"]){
-                        this.props.history.push('/login');
+                        this.props.history.push('/');
                         
                     }else{
                         this.setState({

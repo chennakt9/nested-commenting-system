@@ -44,7 +44,8 @@ var jsonParser = BodyParser.json();
 
 
 //Connection with monodb
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/comment',{useNewUrlParser:true});
+const uri = "mongodb+srv://chennakt9:1234@cluster0-ybkuk.mongodb.net/test?retryWrites=true&w=majority";
+mongoose.connect(uri,{useNewUrlParser:true});
 const connection = mongoose.connection;
 
 connection.once('open',function(){
