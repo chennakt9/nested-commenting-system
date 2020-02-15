@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 
 import axios from 'axios';
 
-const axiosInstance = axios.create({
-  baseURL: "http://localhost:4000"
-  });
+
 
 export default class Register extends Component {
 
@@ -19,6 +17,11 @@ export default class Register extends Component {
         };
 
         axios.defaults.withCredentials = true;
+        axios.defaults.baseURL = "https://nestedcommenting.herokuapp.com/";
+
+        if(process.env.NODE_ENV==="development"){
+          axios.defaults.baseURL = "http://localhost:4000"
+        }
     
       }
       
@@ -71,7 +74,7 @@ export default class Register extends Component {
                 
                
     
-                axiosInstance.post('/api/users/register', registerData)
+                axios.post('/api/users/register', registerData)
                 .then(res => {
                     console.log(res);
                     if(res.data["message"]){

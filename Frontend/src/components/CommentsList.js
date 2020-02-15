@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 // import {Link} from 'react-router-dom';
-import '../index.css';
 
-const axiosInstance = axios.create({
-  baseURL: "http://localhost:4000"
-  });
 
 
 class CommentsList extends Component {
@@ -21,6 +17,11 @@ class CommentsList extends Component {
     };
 
     axios.defaults.withCredentials = true;
+    axios.defaults.baseURL = "https://nestedcommenting.herokuapp.com/";
+
+    if(process.env.NODE_ENV==="development"){
+      axios.defaults.baseURL = "http://localhost:4000"
+    }
   }
 
 
@@ -76,7 +77,7 @@ class CommentsList extends Component {
 
   componentWillMount(){
 
-      axiosInstance.get('/api/commentsapi').then(res => {
+      axios.get('/api/commentsapi').then(res => {
 
       this.setState({
         data:res.data
@@ -85,7 +86,7 @@ class CommentsList extends Component {
 
     }).then(()=>{
 
-      axiosInstance.get('/api/commentsapi/0').then(res => {
+      axios.get('/api/commentsapi/0').then(res => {
       // console.log(res.parents)
 
     this.setState({
@@ -181,7 +182,7 @@ class CommentsList extends Component {
 
     if(this.state.curr_name!=="" && this.state.curr_comment!==""){
 
-      axiosInstance.post('/api/commentsapi/add/', newComment)
+      axios.post('/api/commentsapi/add/', newComment)
       .then(res => console.log(res.data));
 
       this.componentWillMount();
